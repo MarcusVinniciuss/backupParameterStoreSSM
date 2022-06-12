@@ -1,6 +1,10 @@
-from attr import field
+
+from fileinput import filename
 import boto3
+import os.path
 import csv
+from urllib import parse
+
 
 ssm = boto3.client('ssm')
 
@@ -11,6 +15,10 @@ ssm_client = boto3.client('ssm', region_name=AWS_REGION)
 paginator = ssm_client.get_paginator('describe_parameters')
 
 page_iterator = paginator.paginate().build_full_result()
+
+
+list1 = []
+list2 = []
 
 for page in page_iterator['Parameters']:
     response = ssm_client.get_parameter(
@@ -23,16 +31,23 @@ for page in page_iterator['Parameters']:
     parameter_name = page['Name']
     parameter_value = value
     
-    filename = "parameter_bkp.csv"
-    fields = ['Parameter', 'Value']
-    rows = []
+    values_param = f'{parameter_name}, {parameter_value}'
     
-    print(f'{parameter_name} - {parameter_value}')
+    list1.append(values_param)
+    #list2.append(parameter_value)
 
+    print(list1)
+
+
+
+fields = ['ParameterName', 'ParameterValue']
+
+filename = 'params.csv'
+
+with open(filename, 'w') as csvfile:
+    csvwriter = csv.writer(csvfile)
     
-    with open(filename, 'w') as csvfile:
-        csvwriter = csv.writer(csvfile)
-        csvwriter.writerow(fields)
-        
-        for key in parameter_name.keys():
-            csvwriter.writerows((key,parameter_name[key])) 
+    csvwriter.writerow(fields)
+
+    csvwriter.writerows(list1)
+print(list1)
