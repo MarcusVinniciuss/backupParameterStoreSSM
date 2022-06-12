@@ -44,8 +44,6 @@ def get_parameters():
 
         print(test_split)
 
-
-
     fields = ['Count','ParameterName', 'ParameterValue']
 
     filename = 'params.csv'
@@ -59,3 +57,15 @@ def get_parameters():
     print(list1)
 
 get_parameters()
+
+
+def send_csv_s3():
+    s3 = boto3.client('s3')
+    bucket = 'parameters-bkp'
+    
+    s3.upload_file('params.csv', bucket, 'params.csv')
+    
+    print('Arquivo enviado')
+
+send_csv_s3()
+    
