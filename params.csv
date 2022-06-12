@@ -1,4 +1,4 @@
 ParameterName,ParameterValue
-/,f,l,a,s,k,/,e,n,d,p,o,i,n,t,",", ,F,l,a,s,k,E,n,d,p,o,i,n,t
-/,f,l,a,s,k,/,i,n,i,t,i,a,l,",", ,F,l,a,s,k,A,p,i,T,o,k,e,n
-/,g,i,t,h,u,b,/,a,p,i,_,t,o,k,e,n,",", ,g,h,p,_,g,l,m,Z,T,5,u,M,3,F,b,u,X,5,j,V,J,k,D,y,R,c,Z,9,X,E,T,O,Y,B,1,E,4,o,7,2
+/flask/endpoint,FlaskEndpoint
+/flask/initial,FlaskApiToken
+/github/api_token,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

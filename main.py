@@ -31,12 +31,14 @@ for page in page_iterator['Parameters']:
     parameter_name = page['Name']
     parameter_value = value
     
-    values_param = f'{parameter_name}, {parameter_value}'
+    values_param = f'{parameter_name} {parameter_value}'
     
-    list1.append(values_param)
+    test_split = values_param.split()
+    
+    list1.append(test_split)
     #list2.append(parameter_value)
 
-    print(list1)
+    print(test_split)
 
 
 
