@@ -7,11 +7,8 @@ def get_parameters():
     AWS_REGION = "us-east-1"
 
     ssm_client = boto3.client('ssm', region_name=AWS_REGION)
-
     paginator = ssm_client.get_paginator('describe_parameters')
-
     page_iterator = paginator.paginate().build_full_result()
-
 
     list1 = []
     count = 0
@@ -59,5 +56,4 @@ send_csv_s3()
 
 
 def lambda_handler(event, context):
-
-    
+    pass
