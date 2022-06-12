@@ -6,50 +6,56 @@ import csv
 from urllib import parse
 
 
-ssm = boto3.client('ssm')
+def get_parameters():
 
-AWS_REGION = "us-east-1"
+    ssm = boto3.client('ssm')
 
-ssm_client = boto3.client('ssm', region_name=AWS_REGION)
+    AWS_REGION = "us-east-1"
 
-paginator = ssm_client.get_paginator('describe_parameters')
+    ssm_client = boto3.client('ssm', region_name=AWS_REGION)
 
-page_iterator = paginator.paginate().build_full_result()
+    paginator = ssm_client.get_paginator('describe_parameters')
 
-
-list1 = []
-list2 = []
-
-for page in page_iterator['Parameters']:
-    response = ssm_client.get_parameter(
-        Name=page['Name'],
-        WithDecryption=True
-    )
-    
-    value = response['Parameter']['Value']
-    
-    parameter_name = page['Name']
-    parameter_value = value
-    
-    values_param = f'{parameter_name} {parameter_value}'
-    
-    test_split = values_param.split()
-    
-    list1.append(test_split)
-    #list2.append(parameter_value)
-
-    print(test_split)
+    page_iterator = paginator.paginate().build_full_result()
 
 
+    list1 = []
+    count = 0
 
-fields = ['ParameterName', 'ParameterValue']
+    for page in page_iterator['Parameters']:
+        response = ssm_client.get_parameter(
+            Name=page['Name'],
+            WithDecryption=True
+        )
 
-filename = 'params.csv'
+        value = response['Parameter']['Value']
 
-with open(filename, 'w') as csvfile:
-    csvwriter = csv.writer(csvfile)
-    
-    csvwriter.writerow(fields)
+        parameter_name = page['Name']
+        parameter_value = value
 
-    csvwriter.writerows(list1)
-print(list1)
+        count += 1
+        
+        values_param = f'{count} {parameter_name} {parameter_value}'
+
+        test_split = values_param.split()
+
+        list1.append(test_split)
+        #list2.append(parameter_value)
+
+        print(test_split)
+
+
+
+    fields = ['Count','ParameterName', 'ParameterValue']
+
+    filename = 'params.csv'
+
+    with open(filename, 'w') as csvfile:
+        csvwriter = csv.writer(csvfile)
+
+        csvwriter.writerow(fields)
+
+        csvwriter.writerows(list1)
+    print(list1)
+
+get_parameters()

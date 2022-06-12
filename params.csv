@@ -1,4 +1,6 @@
-ParameterName,ParameterValue
-/flask/endpoint,FlaskEndpoint
-/flask/initial,FlaskApiToken
-/github/api_token,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
+Count,ParameterName,ParameterValue
+1,/api/go/base,https://larien.gitbook.io/aprenda-go-com-testes/primeiros-passos-com-go/instalacao-do-go
+2,/flask/endpoint,FlaskEndpoint
+3,/flask/initial,FlaskApiToken
+4,/github/api_token,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
+5,/mercury-enjuventory/go,"go,go,go"
