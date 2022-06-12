@@ -19,6 +19,8 @@ After run this commands:
 
 - Go to IAM and create two policies ("ListParams" and "S3AllowPull"), to create the policies use the json template in this folder 'lambda/Policies/'.
 
+- After created the policies, go to IAM > Roles > your-lambda-role. Go to "Add permissions" and attach the policies that you created.
+
 - Now, create a bucket s3 with Versioning enabled, copy the arn bucket and paste on your policy 'S3AllowPull'.
 
 Done!
