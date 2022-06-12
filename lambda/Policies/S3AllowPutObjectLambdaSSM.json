@@ -8,7 +8,7 @@
             ],
             "Effect": "Allow",
             "Resource": [
-                "arn:aws:s3:::parameters-bkp/*"
+                "arn:aws:s3:::your-bucket/*"
             ]
         }
     ]
