@@ -1,15 +1,9 @@
-
-from fileinput import filename
 import boto3
-import os.path
 import csv
-from urllib import parse
 
 
 def get_parameters():
-
-    ssm = boto3.client('ssm')
-
+    #ssm = boto3.client('ssm')
     AWS_REGION = "us-east-1"
 
     ssm_client = boto3.client('ssm', region_name=AWS_REGION)
@@ -40,19 +34,15 @@ def get_parameters():
         test_split = values_param.split()
 
         list1.append(test_split)
-        #list2.append(parameter_value)
 
         print(test_split)
 
     fields = ['Count','ParameterName', 'ParameterValue']
-
     filename = 'params.csv'
 
     with open(filename, 'w') as csvfile:
         csvwriter = csv.writer(csvfile)
-
         csvwriter.writerow(fields)
-
         csvwriter.writerows(list1)
     print(list1)
 
@@ -62,10 +52,12 @@ get_parameters()
 def send_csv_s3():
     s3 = boto3.client('s3')
     bucket = 'parameters-bkp'
-    
     s3.upload_file('params.csv', bucket, 'params.csv')
-    
     print('Arquivo enviado')
 
 send_csv_s3()
+
+
+def lambda_handler(event, context):
+
     
