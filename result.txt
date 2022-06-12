@@ -1,1 +1,0 @@
-{'Name': '/github/api_token', 'Type': 'String', 'LastModifiedDate': datetime.datetime(2022, 6, 4, 22, 19, 35, 733000, tzinfo=tzlocal()), 'LastModifiedUser': 'arn:aws:iam::003282563584:root', 'Version': 2, 'Tier': 'Standard', 'Policies': [], 'DataType': 'text'}
