@@ -19,14 +19,17 @@ def get_parameters():
             WithDecryption=True
         )
 
+        print(page['Type'])
+        
         value = response['Parameter']['Value']
 
         parameter_name = page['Name']
+        parameter_type = page['Type']
         parameter_value = value
 
         count += 1
         
-        values_param = f'{count} {parameter_name} {parameter_value}'
+        values_param = f'{count} {parameter_name} {parameter_type} {parameter_value}'
 
         test_split = values_param.split()
 
@@ -34,13 +37,13 @@ def get_parameters():
 
         print(test_split)
 
-    fields = ['Count','ParameterName', 'ParameterValue']
+    fields = ['Count','ParameterName', 'ParameterType', 'ParameterValue']
     filename = 'params.csv'
 
     with open(filename, 'w') as csvfile:
-        csvwriter = csv.writer(csvfile)
-        csvwriter.writerow(fields)
-        csvwriter.writerows(list1)
+         csvwriter = csv.writer(csvfile)
+         csvwriter.writerow(fields)
+         csvwriter.writerows(list1)
     print(list1)
 
 get_parameters()
@@ -54,6 +57,3 @@ def send_csv_s3():
 
 send_csv_s3()
 
-
-def lambda_handler(event, context):
-    pass

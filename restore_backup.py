@@ -11,16 +11,16 @@ with open('params.csv', 'r') as read_obj:
     csv_reader = reader(read_obj)
     list_params = list(csv_reader)
 
-    list_params.remove(['Count', 'ParameterName', 'ParameterValue'])
+    list_params.remove(['Count', 'ParameterName', 'ParameterType', 'ParameterValue'])
 
     for item in list_params:
         print(item)
         new_string_parameter = ssm_client.put_parameter(
             Name= item[1],
-            Value=item[2],
-            Type='String',
+            Value=item[3],
+            Type=item[2],
             Overwrite=True,
             Tier='Standard',
             DataType='text')
 
-        print("Created parameters")
+        print("Created parameter")
