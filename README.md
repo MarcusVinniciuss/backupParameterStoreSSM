@@ -23,5 +23,13 @@ After run this commands:
 
 - Now, create a bucket s3 with Versioning enabled, copy the arn bucket and paste on your policy 'S3AllowPull'.
 
+
+
+## How to create pparameters using backup file
+
+- First, configure your credentials aws who you that will be using to create parameters.
+- Now, download the backup file and paste local path into your code, on csv parameters.
+
+
 Done!
 
