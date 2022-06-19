@@ -25,7 +25,7 @@ After run this commands:
 
 
 
-## How to create pparameters using backup file
+## How to create parameters using backup file
 
 - First, configure your credentials aws who you that will be using to create parameters.
 - Now, download the backup file and paste local path into your code, on csv parameters.
